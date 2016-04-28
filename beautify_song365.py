@@ -1,5 +1,6 @@
 #
-#use the argument 'dryRun' to not make any changes
+# arg1 path
+# arg2 'dryRun' to not make any changes
 #
 
 import sys
@@ -51,9 +52,8 @@ def addTitle(files):
       id3File["title"] = title
 
 
-isDryRun = len(sys.argv) > 1 and sys.argv[1]=="dryRun"
-path = os.getcwd() + "/"
-print(path)
+path = sys.argv[1]
+isDryRun = len(sys.argv) > 2 and sys.argv[2]=="dryRun"
 ending = ".mp3"
 middlePart = "_(song365.cc)"
 
