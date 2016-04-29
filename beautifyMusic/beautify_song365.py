@@ -8,7 +8,7 @@ import os
 from glob import glob
 from beautifyLib import beautify
 sys.path.append("/usr/local/lib/python3.4/dist-packages/")
-from mutagenx.mp3 import MP3
+from mutagenx.mp3 import EasyMP3 as MP3
 
 
 def getOnlyFiles(ending):
@@ -40,6 +40,7 @@ def addArtist(files):
       fileWithPath = os.path.join(path, f)
       id3File = MP3(fileWithPath)
       id3File["artist"] = artist
+      id3File.save()
 
 
 def addTitle(files):
@@ -50,6 +51,7 @@ def addTitle(files):
       fileWithPath = os.path.join(path, f)
       id3File = MP3(fileWithPath)
       id3File["title"] = title
+      id3File.save()
 
 
 def beautify():
