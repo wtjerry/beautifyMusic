@@ -34,6 +34,17 @@ class beautify_song365(object):
     return title
 
 
+  def addTitle(self, files):
+    for f in files:
+      title = self.extractTitle(f)
+      print("adding title '{title}' to file '{file}'".format(title=title, file=f))
+      if(not self.isDryRun):
+        fileWithPath = os.path.join(self.path, f)
+        id3File = MP3(fileWithPath)
+        id3File["title"] = title
+        id3File.save()
+
+
   def addArtist(self, files):
     for f in files:
       artist = self.extractArtist(f)
@@ -45,14 +56,13 @@ class beautify_song365(object):
         id3File.save()
 
 
-  def addTitle(self, files):
+  def addAlbum(self, files):
     for f in files:
-      title = self.extractTitle(f)
-      print("adding title '{title}' to file '{file}'".format(title=title, file=f))
+      print("adding album '{album}' to file '{file}'".format(album=self.album, file=f))
       if(not self.isDryRun):
         fileWithPath = os.path.join(self.path, f)
         id3File = MP3(fileWithPath)
-        id3File["title"] = title
+        id3File["album"] = self.album
         id3File.save()
 
 
@@ -79,6 +89,7 @@ class beautify_song365(object):
     files = self.getOnlyFiles()
     if (len(files) > 0):
       self.addArtist(files)
+      self.addAlbum(files)
       self.addTitle(files)
       self.renameFiles()
 
