@@ -52,17 +52,19 @@ def addTitle(files):
       id3File["title"] = title
 
 
-path = sys.argv[1]
-isDryRun = len(sys.argv) > 2 and sys.argv[2]=="dryRun"
-ending = ".mp3"
-middlePart = "_(song365.cc)"
+def beautify()
+  path = sys.argv[1]
+  isDryRun = len(sys.argv) > 2 and sys.argv[2]=="dryRun"
+  ending = ".mp3"
+  middlePart = "_(song365.cc)"
 
-filePath = glob(path + "*" + ending)[0]
-f = filePath.split('/')[-1]
-prefix = extractArtist(f) + " - "
+  filePath = glob(path + "*" + ending)[0]
+  f = filePath.split('/')[-1]
+  prefix = extractArtist(f) + " - "
 
-files = getOnlyFiles(ending)
-addArtist(files)
-addTitle(files)
-beautify(path, ending, prefix, middlePart, isDryRun)
+  files = getOnlyFiles(ending)
+  addArtist(files)
+  addTitle(files)
+  beautify(path, ending, prefix, middlePart, isDryRun)
+
 
