@@ -52,7 +52,7 @@ def addTitle(files):
       id3File["title"] = title
 
 
-def beautify()
+def beautify():
   path = sys.argv[1]
   isDryRun = len(sys.argv) > 2 and sys.argv[2]=="dryRun"
   ending = ".mp3"
