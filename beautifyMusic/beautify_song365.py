@@ -6,7 +6,7 @@
 import sys
 import os
 from glob import glob
-from beautifyLib import beautify
+from .beautifyLib import beautify
 sys.path.append("/usr/local/lib/python3.4/dist-packages/")
 from mutagenx.mp3 import EasyMP3 as MP3
 
