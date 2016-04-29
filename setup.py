@@ -6,5 +6,5 @@ setup(
     license="GPLv2+",
     install_requires=["mutagenx"],
     packages=["beautifyMusic"],
-    entry_points={"console_scripts": ["beautifyMusic = beautifyMusic.__main__:main"]}
+    entry_points={"console_scripts": ["beautifyMusicSong365 = beautifyMusic.commandline:song365"]}
 )
