@@ -35,30 +35,27 @@ class beautify_song365(object):
     return title
 
 
-  def addTitle(self, files):
-    for f in files:
-      title = self.extractTitle(f)
-      print("adding title '{title}' to file '{file}'".format(title=title, file=f))
-      if(not self.isDryRun):
-        fileWithPath = os.path.join(self.path, f)
-        setTitle(fileWithPath, title)
+  def addTitle(self, f):
+    title = self.extractTitle(f)
+    print("adding title '{title}' to file '{file}'".format(title=title, file=f))
+    if(not self.isDryRun):
+      fileWithPath = os.path.join(self.path, f)
+      setTitle(fileWithPath, title)
 
 
-  def addArtist(self, files):
-    for f in files:
-      artist = self.extractArtist(f)
-      print("adding artist '{artist}' to file '{file}'".format(artist=artist, file=f))
-      if(not self.isDryRun):
-        fileWithPath = os.path.join(self.path, f)
-        setArtist(fileWithPath, artist)
+  def addArtist(self, f):
+    artist = self.extractArtist(f)
+    print("adding artist '{artist}' to file '{file}'".format(artist=artist, file=f))
+    if(not self.isDryRun):
+      fileWithPath = os.path.join(self.path, f)
+      setArtist(fileWithPath, artist)
 
 
-  def addAlbum(self, files):
-    for f in files:
-      print("adding album '{album}' to file '{file}'".format(album=self.album, file=f))
-      if(not self.isDryRun):
-        fileWithPath = os.path.join(self.path, f)
-        setAlbum(fileWithPath, self.album)
+  def addAlbum(self, f):
+    print("adding album '{album}' to file '{file}'".format(album=self.album, file=f))
+    if(not self.isDryRun):
+      fileWithPath = os.path.join(self.path, f)
+      setAlbum(fileWithPath, self.album)
 
 
   def renameFiles(self):
@@ -82,10 +79,12 @@ class beautify_song365(object):
     self.middlePart = "_(song365.cc)"
 
     files = self.getOnlyFiles()
-    if (len(files) > 0):
-      self.addArtist(files)
-      self.addAlbum(files)
-      self.addTitle(files)
+    
+    for f in files:
+      self.addArtist(f)
+      self.addAlbum(f)
+      self.addTitle(f)
+    if (len(files) > 0):    
       self.renameFiles()
 
 
