@@ -7,9 +7,10 @@
 import sys
 import os
 from glob import glob
-from .beautifyLib import beautify
-sys.path.append("/usr/local/lib/python3.4/dist-packages/")
-from mutagenx.mp3 import EasyMP3 as MP3
+from .beautifyLib import beautifyFileName
+from .beautifyLib import setArtist
+from .beautifyLib import setAlbum
+from .beautifyLib import setTitle
 
 
 class beautify_song365(object):
@@ -40,9 +41,7 @@ class beautify_song365(object):
       print("adding title '{title}' to file '{file}'".format(title=title, file=f))
       if(not self.isDryRun):
         fileWithPath = os.path.join(self.path, f)
-        id3File = MP3(fileWithPath)
-        id3File["title"] = title
-        id3File.save()
+        setTitle(fileWithPath, title)
 
 
   def addArtist(self, files):
@@ -51,9 +50,7 @@ class beautify_song365(object):
       print("adding artist '{artist}' to file '{file}'".format(artist=artist, file=f))
       if(not self.isDryRun):
         fileWithPath = os.path.join(self.path, f)
-        id3File = MP3(fileWithPath)
-        id3File["artist"] = artist
-        id3File.save()
+        setArtist(fileWithPath, artist)
 
 
   def addAlbum(self, files):
@@ -61,9 +58,7 @@ class beautify_song365(object):
       print("adding album '{album}' to file '{file}'".format(album=self.album, file=f))
       if(not self.isDryRun):
         fileWithPath = os.path.join(self.path, f)
-        id3File = MP3(fileWithPath)
-        id3File["album"] = self.album
-        id3File.save()
+        setAlbum(fileWithPath, self.album)
 
 
   def renameFiles(self):
@@ -71,7 +66,7 @@ class beautify_song365(object):
     filePath = glob(self.path + "*" + self.ending)[0]
     f = filePath.split('/')[-1]
     prefix = self.extractArtist(f) + " - "
-    beautify(self.path, self.ending, prefix, self.middlePart, self.isDryRun)
+    beautifyFileName(self.path, self.ending, prefix, self.middlePart, self.isDryRun)
 
 
   def beautify(self):
