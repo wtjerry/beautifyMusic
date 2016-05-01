@@ -82,7 +82,7 @@ class beautify_song365(object):
     if (not self.path[-1] == "/"):
       self.path = self.path + "/"
     self.album = sys.argv[2]
-    self.isDryRun = len(sys.argv) > 3 and sys.argv[3]=="dryRun"
+    self.isDryRun = len(sys.argv) > 3 and sys.argv[3].lower()=="dryrun"
     self.ending = ".mp3"
     self.middlePart = "_(song365.cc)"
 
